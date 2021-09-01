@@ -1,0 +1,110 @@
+{{>header}}
+{{>slidebar}}
+<div id= 'wrapper-id' class="content-wrapper">
+            <div class="content-wrapper-header">
+                <p> Home </p>
+            </div>
+
+            <div class="content-wrapper-content">
+                <div class="session-welcome">
+                    Welcome {{user.fullName}}!
+                </div>
+
+                <div class="session-main">
+                    <div class="task-progress">
+                        <div class="task-pro-header">
+                            Task Progress
+                        </div>
+                        <div class="task-pro-body">
+                            <table class="task-progress-list">
+                                <colgroup>
+                                    <col width="5%">
+                                    <col width="30%">
+                                    <col width="35%">
+                                    <col width="15%">
+                                    <col width="15%">
+                                </colgroup>
+                                <thead>
+                                    <tr><th>#</th>
+                                    <th>Task</th>
+                                    <th>Progress</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                </tr></thead>
+                                <tbody>
+                                    {{#each task}}
+
+                                    <tr>
+                                        <td>{{sum @index 1}}</td>
+                                        <td>
+                                            <a>
+                                               {{this.taskName}}                          
+                                            </a>
+                                            <br>
+                                                Due: <small> {{this.endDate}}</small>
+                                        </td>
+                                        <td class="project_progress">
+                                            <div class="progress progress-sm">
+                                                <div class="progress-bar bg-green" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: {{this.progress}}">
+                                                </div>
+                                            </div>
+                                            <small>
+                                                 {{this.progress}} Complete
+                                            </small>
+                                        </td>
+                                        <td class="project-state">
+                                            <span class="badge badge-primary">{{this.status}}</span>                      
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
+                                                <i class="ti-folder"></i>
+                                                View
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <div class="total">
+                        <div class="total-tasks">
+                            <div class="inner">
+                                <h3 class="count">{{totalTask}}</h3>
+                                <p class="text-total">Total Tasks</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ti-list"></i>
+                            </div>
+                        </div>
+                        <div class="total-employees">
+                            <div class="inner">
+                                <h3 class="count">{{totalUser}}</h3>
+                                <p class="text-total">Total Employees</p>
+                            </div>
+                            <div class="icon"> 
+                                <i class="ti-user"></i>
+                            </div>                            
+                        </div>
+
+                    </div>
+                </div>
+                
+            </div>
+ </div>
+
+<style>
+    #dashboard, #item-menu {
+        background-color: #f0f0f0 !important; 
+        color: #4c7ebf !important;
+    }
+
+   
+    
+  
+</style> 
+
+

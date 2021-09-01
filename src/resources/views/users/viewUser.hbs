@@ -1,0 +1,131 @@
+{{>header}}
+{{>slidebar}}
+<div id = 'viewUser' class="display-board">
+    <div class="content-wrapper-header">
+        <p> View User </p>
+    </div>
+    <div class="col-lg-12 board-main-content" >    
+         <div class="row board-main-row">
+            <div class="col-md-12">
+    			<div class="callout callout-info">
+	    			<div class="col-md-12">
+                       
+	    				<div class="row board-main">
+    						<div class="col-sm-6">
+    							<dl>
+                                    <dt><b class="border-bottom border-primary">User ID</b></dt>
+                                    <dd>{{user.userId}} </dd>
+                                    <dt><b class="border-bottom border-primary">User Name</b></dt>
+                                    <dd>{{user.fullName}}  </dd>
+                                    <dt><b class="border-bottom border-primary">Role</b></dt>
+                                    <dd>{{user.role}}  </dd>
+                                    <dt><b class="border-bottom border-primary">Age</b></dt>
+                                    <dd>					{{user.age}} 						</dd>
+                                    <dt><b class="border-bottom border-primary">Gender</b></dt>
+                                    <dd>{{user.gender}}  </dd>
+                                    
+    							</dl>
+					        </div>
+                            
+                          
+    						<div class="col-md-6">
+                                <dl>
+                                    <dt><b class="border-bottom border-primary">Address</b></dt>
+                                    <dd>{{user.address}}  </dd>
+                                    <dt><b class="border-bottom border-primary">Email</b></dt>
+                                    <dd>{{user.email}} </dd>
+                                </dl>
+                                <dl>
+                                    <dt><b class="border-bottom border-primary">Number phone</b></dt>
+                                    <dd>{{user.numberPhone}} </dd>
+                                </dl>
+                                <dl>
+                                    <dt><b class="border-bottom border-primary">Account Name</b></dt>
+                                    <dd>{{user.userName}} </dd>
+                                </dl>
+                                <dl>
+                                    <dt><b class="border-bottom border-primary">Password</b></dt>
+                                    <dd>
+
+                                        {{user.password}}
+                                        
+                                    </dd>
+							    </dl>
+					    	</div>  
+				    	</div>
+                         
+			    	</div>
+			    </div>
+	    	</div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .board-main-row {
+        margin: 25px 20px 20px 30px;
+        background: #fff;
+        padding: 20px 30px;
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border: 1px solid #c2c2c2;
+        display: inline-block;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+    .board-main {
+        display: flex;
+    }
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-task {
+        display: flex;
+        
+    }
+
+    .detail-task-col1,.detail-task-col2  {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+         border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+        
+    }
+    .detail-task-col1{
+        margin: 25px 0px 20px 30px;
+    }
+
+    .detail-task-col2 {
+        margin: 25px 20px 20px 0px;   
+    }
+  
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary{
+    color: #fff;
+    background-color: #007bff;
+    }
+    .users-list li {
+        list-style-type: none;
+    }
+    .users-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+</style>
+
+<style>
+    .user, #item-menu-user {
+    background-color: #f0f0f0 !important; 
+    color: #4c7ebf !important;
+  }
+</style>

@@ -1,0 +1,287 @@
+{{>header}}
+{{>slidebar}}
+<div id = 'content-board' class="display-board">
+     <div class="content-wrapper-header">
+        <p> Board </p>
+    </div>
+
+    <div class="col-lg-12 board-main-content" >
+        {{!-- <h6 style="margin: 20px"> The fuction is being updated! </h6> --}}
+    	<div class="col-sm-3 statusCol">
+            <div class="headerCol">
+                <div class="status">
+                    <h6 >Started</h6>
+                </div>
+                <div class="countTask">
+                    <h6 style="text-align: center;">{{totalTask1}}</h6>
+                </div>
+            </div>
+
+            <ul class="mainCol">
+                {{#each task1}}
+                    <li class="itemTask">
+                        <div class="col">
+                            <div class="nameTask">
+                                <h6>
+                                    {{this.taskName}}
+                                </h6>                            
+                            </div>
+                            <div class="due">
+                                Due: {{this.endDate}}
+                            </div>
+                        </div>
+                        
+                        <div class="col session-view">
+                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
+                                <i class="ti-folder"></i>
+                                View
+                            </a>
+                        </div>
+                        
+                    </li>
+                    {{/each}}
+                
+            </ul>
+        </div>
+
+        <div class="col-sm-3 statusCol">
+            <div class="headerCol">
+                <div class="status">
+                    <h6 >On-Progress</h6>
+                </div>
+                <div class="countTask">
+                    <h6 style="text-align: center;">{{totalTask2}}</h6>
+                    
+                </div>
+            </div>
+           
+            <ul class="mainCol">
+                 {{#each task2}}
+                    <li class="itemTask">
+                        <div class="col">
+                            <div class="nameTask">
+                                <h6>
+                                    {{this.taskName}}
+                                </h6>                            
+                            </div>
+                            <div class="due">
+                                Due: {{this.endDate}}
+                            </div>
+                        </div>
+                        
+                        <div class="col session-view">
+                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
+                                <i class="ti-folder"></i>
+                                View
+                            </a>
+                        </div>
+                        
+                    </li>
+                {{/each}}
+            </ul>
+            
+        </div>
+
+        <div class="col-sm-3 statusCol">
+            <div class="headerCol">
+                <div class="status">
+                    <h6 >Done</h6>
+
+                </div>
+                <div class="countTask">
+                     <h6 style="text-align: center;">{{totalTask3}}</h6>
+                </div>
+            </div>
+
+            <ul class="mainCol">
+                 {{#each task3}}
+                    <li class="itemTask">
+                        <div class="col">
+                            <div class="nameTask">
+                                <h6>
+                                    {{this.taskName}}
+                                </h6>                            
+                            </div>
+                            <div class="due">
+                                {{this.endDate}}
+                            </div>
+                        </div>
+                        
+                        <div class="col session-view">
+                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
+                                <i class="ti-folder"></i>
+                                View
+                            </a>
+                        </div>
+                        
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-sm-3 statusCol">
+            <div class="headerCol">
+                <div class="status">
+                    <h6 >Overdue</h6>
+
+                </div>
+                <div class="countTask">
+                    <h6 style="text-align: center;">{{totalTask4}}</h6>
+                    
+                </div>
+            </div>
+
+            <ul class="mainCol">
+                 {{#each task4}}
+                    <li class="itemTask">
+                        <div class="col">
+                            <div class="nameTask">
+                                <h6>
+                                    {{this.taskName}}	
+                                </h6>                            
+                            </div>
+                            <div class="due">
+                               {{this.endDate}}
+                            </div>
+                        </div>
+                        
+                        <div class="col session-view">
+                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
+                                <i class="ti-folder"></i>
+                                View
+                            </a>
+                        </div>
+                        
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        
+    </div>
+</div>
+
+<style>
+    .board-main-row {
+        margin: 25px 20px 20px 30px;
+        background: #fff;
+        padding: 20px 30px;
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border: 1px solid #c2c2c2;
+        display: inline-block;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+    .board-main {
+        display: flex;
+    }
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-task {
+        display: flex;
+        
+    }
+
+    .detail-task-col1,.detail-task-col2  {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+         border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+        
+    }
+    .detail-task-col1{
+        margin: 25px 0px 20px 30px;
+    }
+
+    .detail-task-col2 {
+        margin: 25px 20px 20px 0px;   
+    }
+  
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary{
+    color: #fff;
+    background-color: #007bff;
+    }
+    .users-list li {
+        list-style-type: none;
+    }
+    .users-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+
+    .board-main-content {
+        display: flex;
+    }
+
+    .statusCol {
+        margin: 30px 0 0 30px;
+    }
+
+    .mainCol {
+        background-color: #fff;
+        padding: 10px;
+        list-style-type: none;
+        border-radius: 5px;
+        margin: 0;
+    }
+
+    .status {
+        margin-right: 8px;
+        
+    }
+
+    .headerCol {
+        display: -webkit-box;
+    }
+
+    .countTask {
+        width: 25px;
+    background: #ccc;
+    height: 20px;
+    border-radius: 30px;
+}
+
+    .itemTask {
+        padding: 10px;
+        display: flex;
+        border: 1px solid #bdbdbd;
+        margin-bottom: 10px;
+    }
+
+    .nameTask {
+        margin-bottom: 5px;
+    }
+
+    .mainCol li:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;    
+    }
+
+    .session-view {
+        margin-left: 50px;
+    }
+
+    .due{
+         font-size: 14px;
+    }
+}
+</style>
+
+<style>
+.board, #item-menu-board{
+    background-color: #f0f0f0 !important; 
+    color: #4c7ebf !important;
+  }
+</style>

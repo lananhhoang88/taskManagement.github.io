@@ -1,0 +1,91 @@
+<div id="slide-bar">
+            <div class="header-sliderbar">
+                <a href="#" class="role-user">
+                    <h3 class="text-role">{{!-- {{user.role}} --}}Manager</h3>
+                </a>
+
+            </div>
+
+            <div class="content-slidebar">
+                <li onclick="HomeClick()" class="dashboard" id="dashboard">
+                    <div>
+                        <i id ='ti-dashboard'class="ti-dashboard"></i>
+                        <a id = 'item-menu'class="item-menu" href="/home" >Dashboard</a>
+                    </div> 
+                </li>
+                <li onclick = "clicky()" class="task">
+                    <div>
+                        <i  class="ti-list"></i>
+                        <a id = "item-menu-task" class="item-menu" href="#">Task</a>
+                        <i class = 'ti-angle-up menuClick'></i>
+                    </div>
+                    <div id = "menuclick" class="click-content">
+                        <a href="/tasks/create" class="add-task">
+                            <i id = 'add new' class="ti-angle-right">
+                                Add New
+                            </i>
+                        </a>
+                        <a href="/tasks/show" class="list-task">
+                            <i class="ti-angle-right">
+                                List
+                            </i>
+                        </a>
+                        
+                    </div>
+                </li>
+
+                <li class="board">
+                    <div class="">
+                        <i class="ti-bar-chart"></i>
+                        <a id = "item-menu-board" class="item-menu" href="/reports/board">Board</a>
+                    </div>
+                </li>
+                <li class="report">
+                    <div class="">
+                        <i class="ti-clipboard"></i>
+                        <a id = "item-menu-report"class="item-menu" href="/reports/report">Report</a>
+                    </div>
+                </li>
+                <li class="gantt-chart">
+                    <div class="">
+                        <i class="ti-align-left"></i>
+                        <a id= "item-menu-gantt"class="item-menu" href="/reports/gantt">Gantt Chart</a>
+                    </div>
+                </li>
+                <li onclick = "clickyUser()" class="user">
+                    <div class="">
+                        <i class="ti-user"></i>
+                        <a id = "item-menu-user"class="item-menu" href="#">Users</a>
+                        <i class="ti-angle-up"></i>
+                    </div>
+                    <div id="menuClickUser" class="click-content-user">
+                        <a href="/users/create" class="add-user">
+                            <i class="ti-angle-right">
+                                Add New
+                            </i>
+                        </a>
+                        <a href="/users/show" class="list-user">
+                            <i class="ti-angle-right">
+                                List
+                            </i>
+                        </a>
+                    </div>
+                </li>
+
+            </div>
+
+</div>
+
+
+
+<script>
+    function clicky(){
+        document.getElementById('menuclick').classList.toggle('show');
+    }
+
+
+    function clickyUser() {
+    document.getElementById('menuClickUser').classList.toggle('show');
+}
+
+</script>

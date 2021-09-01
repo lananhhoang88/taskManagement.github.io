@@ -1,0 +1,148 @@
+{{>header}}
+{{>slidebar}}
+
+<div id = 'edit-task' class="edit-task">
+            <div class="content-wrapper-header">
+                <p> Edit Task </p>
+            </div>
+            <div class="content-board-main" style="margin: 30px;">
+                <form method="POST" action="/tasks/{{task._id}}?_method=PUT"  style="background-color: #fff; padding: 20px">
+                   <div class="col-lg-12 board-main-content" >    
+                        <div class="row board-main-row">
+                            <div class="col-md-12">
+                                <div class="callout callout-info">
+                                    <div class="col-md-12">
+                                        <div class="row board-main">
+                                            <div class="col-sm-6">
+                                                <div class="">
+                                                    <label for="taskId" class="form-label">Task ID</label>
+                                                    <input type="text" class="form-control inputTask" value = '{{task.taskId}}' id="taskId" name="taskId" >
+                                                </div>
+
+                                                <div class="">
+                                                    <label for="taskName" class="form-label">Task Name</label>
+                                                    <input type="text" class="form-control inputTask" value = '{{task.taskName}}' id="taskName" name="taskName">
+                                                </div>
+
+                                                <div class="">
+                                                    <label for="descripTask" class="form-label">Description Task</label>
+                                                    <textarea type="text" class="form-control inputTask"  id="descripTask" name="descripTask" style="height: 100px;"> {{task.descriptionTask}}</textarea>
+                                                </div>
+                                                 <div class="form-group">
+                                                    <label for="status" class="form-label">Status</label>
+                                                    <select name="status" id="status" class="custom-select custom-select-sm" value = '{{task.status}}' style="border: 1px solid #ced4da;border-radius: .25rem;box-shadow: inset 0 1px 2px rgb(0 0 0 / 8%); height: 35px;">
+                                                        <option value="Not Received">Not Received</option>
+                                                        <option value="Denied">Denied</option>
+                                                        <option value="Started">Started</option>
+                                                        <option value="On-Progress">On-Progress</option>
+                                                        <option value="Done">Done</option>
+                                                        <option value="Overdue">Overdue</option>
+                                                    </select>
+                                                </div>
+					                        </div>
+                                            <div class="col-sm-6">
+                    
+                                                <div class="">
+                                                    <label for="leader" class="form-label">Leader</label>
+                                                    <input type="text" class="form-control inputTask" value = '{{task.leaderId}}' id="leader" name="leader">
+                                                </div>
+                                                <div class="">
+                                                    <label for="startDate" class="form-label">Start Date</label>
+                                                    <input type="date" class="form-control inputTask" value = '{{task.startDate}}' id="startDate" name="startDate">
+                                                </div>
+
+                                                <div class="">
+                                                    <label for="endDate" class="form-label">End Date</label>
+                                                    <input type="date" class="form-control inputTask" value = '{{task.endDate}}' id="endDate" name="endDate">
+                                                </div>
+                                               
+                                                 <div class="">
+                                                    <label for="evaluation" class="form-label">Evaluation</label>
+                                                    <input type="text" class="form-control inputTask" value = '{{task.evaluation}}' id="evaluation" name="evaluation">
+                                                </div>
+
+                                                <button type="submit" class="btn btn-primary" style="float: right;">Update</button>
+					                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                
+            </div>
+            
+</div>
+
+
+<style>
+.task, #item-menu-task {
+    background-color: #f0f0f0 !important; 
+    color: #4c7ebf !important;
+  }
+</style>
+
+<style>
+    .content-board-main {
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+    .board-main-row {
+        background: #fff;
+        padding: 20px 30px;
+        color: rgb(33, 37, 41);
+        display: inline-block;
+        
+        
+    }
+    .board-main {
+        display: flex;
+    }
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-task {
+        display: flex;
+        
+    }
+
+    .detail-task-col1,.detail-task-col2  {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+         border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+        
+    }
+    .detail-task-col1{
+        margin: 25px 0px 20px 30px;
+    }
+
+    .detail-task-col2 {
+        margin: 25px 20px 20px 0px;   
+    }
+  
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary{
+    color: #fff;
+    background-color: #007bff;
+    }
+    .tasks-list li {
+        list-style-type: none;
+    }
+    .tasks-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+    
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+</style>
