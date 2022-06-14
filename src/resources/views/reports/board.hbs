@@ -1,120 +1,150 @@
 {{>header}}
 {{>slidebar}}
-<div id = 'content-board' class="display-board">
-     <div class="content-wrapper-header">
+<div id='content-board' class="display-board">
+    <div class="content-wrapper-header">
         <p> Board </p>
+        <div class="header-filter">
+            <form action="/reports/board" method="POST">
+                <div class="">
+                    <input type="text" name="q" value="{{search.q}}" placeholder="Search issue name" />
+                </div>
+                <div class="la-select2">
+                    <select class="dropdown" name="issueType" placeholder="Select Issue Type"
+                        value="{{search.issueType}}">
+                        {{#each lstIssueType}}
+                        <option value="{{_id}}" {{#if selected}} selected {{/if}}>
+                            {{issueTypeName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="la-select2">
+                    <select class="dropdown" name="status" placeholder="Select Status" value="{{search.status}}">
+                        {{#each lstStatus}}
+                        <option value="{{_id}}" {{#if selected}} selected {{/if}}>
+                            {{issueStatusName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="la-select2">
+                    <select class="dropdown" name="category" placeholder="Select Category" value="{{search.category}}">
+                        {{#each lstCategory}}
+                        <option value="{{_id}}" {{#if selected}} selected {{/if}}>
+                            {{categoryName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div>
+                    <button type="submit" class="primary-button">Tìm kiếm</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-    <div class="col-lg-12 board-main-content" >
-        {{!-- <h6 style="margin: 20px"> The fuction is being updated! </h6> --}}
-    	<div class="col-sm-3 statusCol">
+    <div class="col-lg-12 board-main-content">
+        <div class="col-sm-3 statusCol">
             <div class="headerCol">
                 <div class="status">
-                    <h6 >Started</h6>
+                    <h6>Open</h6>
                 </div>
-                <div class="countTask">
-                    <h6 style="text-align: center;">{{totalTask1}}</h6>
-                </div>
+                <div class="countissue">{{totalIssueOpen}}</div>
             </div>
 
             <ul class="mainCol">
-                {{#each task1}}
-                    <li class="itemTask">
-                        <div class="col">
-                            <div class="nameTask">
-                                <h6>
-                                    {{this.taskName}}
-                                </h6>                            
-                            </div>
-                            <div class="due">
-                                Due: {{this.endDate}}
-                            </div>
+                {{#each issueOpen}}
+                <li class="itemissue">
+                    <div class="col">
+                        <div class="nameissue">
+                            <h6>
+                                <span class="type">{{issueTypeName}}</span> {{this.subject}}
+                            </h6>
                         </div>
-                        
-                        <div class="col session-view">
-                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
-                                <i class="ti-folder"></i>
-                                View
-                            </a>
+                        <div class="due">
+                            Due: {{this.dueDate}}
                         </div>
-                        
-                    </li>
-                    {{/each}}
-                
+                    </div>
+
+                    <div class="session-view">
+                        <a class="btn btn-primary btn-sm" href="/issues/show/{{this.id}}" data-id="{{this._id}}">
+                            <i class="ti-folder"></i>
+                            View
+                        </a>
+                    </div>
+
+                </li>
+                {{/each}}
+
             </ul>
         </div>
 
         <div class="col-sm-3 statusCol">
             <div class="headerCol">
                 <div class="status">
-                    <h6 >On-Progress</h6>
+                    <h6>In Progress</h6>
                 </div>
-                <div class="countTask">
-                    <h6 style="text-align: center;">{{totalTask2}}</h6>
-                    
-                </div>
+                <div class="countissue">{{totalIssueInProgress}}</div>
             </div>
-           
+
             <ul class="mainCol">
-                 {{#each task2}}
-                    <li class="itemTask">
-                        <div class="col">
-                            <div class="nameTask">
-                                <h6>
-                                    {{this.taskName}}
-                                </h6>                            
-                            </div>
-                            <div class="due">
-                                Due: {{this.endDate}}
-                            </div>
+                {{#each issueInProgress}}
+                <li class="itemissue">
+                    <div class="col">
+                        <div class="nameissue">
+                            <h6>
+                                <span class="type">{{issueTypeName}}</span> {{this.subject}}
+                            </h6>
                         </div>
-                        
-                        <div class="col session-view">
-                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
-                                <i class="ti-folder"></i>
-                                View
-                            </a>
+                        <div class="due">
+                            Due: {{this.dueDate}}
                         </div>
-                        
-                    </li>
+                    </div>
+
+                    <div class="session-view">
+                        <a class="btn btn-primary btn-sm"  href="/issues/show/{{this.id}}" data-id="{{this._id}}">
+                            <i class="ti-folder"></i>
+                            View
+                        </a>
+                    </div>
+
+                </li>
                 {{/each}}
             </ul>
-            
+
         </div>
 
         <div class="col-sm-3 statusCol">
             <div class="headerCol">
                 <div class="status">
-                    <h6 >Done</h6>
+                    <h6>Done</h6>
 
                 </div>
-                <div class="countTask">
-                     <h6 style="text-align: center;">{{totalTask3}}</h6>
-                </div>
+                <div class="countissue">{{totalIssueDone}}</div>
             </div>
 
             <ul class="mainCol">
-                 {{#each task3}}
-                    <li class="itemTask">
-                        <div class="col">
-                            <div class="nameTask">
-                                <h6>
-                                    {{this.taskName}}
-                                </h6>                            
-                            </div>
-                            <div class="due">
-                                {{this.endDate}}
-                            </div>
+                {{#each issueDone}}
+                <li class="itemissue">
+                    <div class="col">
+                        <div class="nameissue">
+                            <h6>
+                                <span class="type">{{issueTypeName}}</span> {{this.subject}}
+                            </h6>
                         </div>
-                        
-                        <div class="col session-view">
-                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
-                                <i class="ti-folder"></i>
-                                View
-                            </a>
+                        <div class="due">
+                            {{this.dueDate}}
                         </div>
-                        
-                    </li>
+                    </div>
+
+                    <div class="session-view">
+                        <a class="btn btn-primary btn-sm"  href="/issues/show/{{this.id}}" data-id="{{this._id}}">
+                            <i class="ti-folder"></i>
+                            View
+                        </a>
+                    </div>
+
+                </li>
                 {{/each}}
             </ul>
         </div>
@@ -122,44 +152,47 @@
         <div class="col-sm-3 statusCol">
             <div class="headerCol">
                 <div class="status">
-                    <h6 >Overdue</h6>
+                    <h6>Overdue</h6>
 
                 </div>
-                <div class="countTask">
-                    <h6 style="text-align: center;">{{totalTask4}}</h6>
-                    
-                </div>
+                <div class="countissue">{{totalIssueOverdue}}</div>
             </div>
 
             <ul class="mainCol">
-                 {{#each task4}}
-                    <li class="itemTask">
-                        <div class="col">
-                            <div class="nameTask">
-                                <h6>
-                                    {{this.taskName}}	
-                                </h6>                            
-                            </div>
-                            <div class="due">
-                               {{this.endDate}}
-                            </div>
+                {{#each issueOverdue}}
+                <li class="itemissue">
+                    <div class="col">
+                        <div class="nameissue">
+                            <h6>
+                                <span class="type">{{issueTypeName}}</span> {{this.subject}}
+                            </h6>
                         </div>
-                        
-                        <div class="col session-view">
-                            <a class="btn btn-primary btn-sm" href="/tasks/show/{{this.slug}}">
-                                <i class="ti-folder"></i>
-                                View
-                            </a>
+                        <div class="due">
+                            {{this.dueDate}}
                         </div>
-                        
-                    </li>
+                    </div>
+
+                    <div class="session-view">
+                        <a class="btn btn-primary btn-sm"  href="/issues/show/{{this.id}}" data-id="{{this._id}}">
+                            <i class="ti-folder"></i>
+                            View
+                        </a>
+                    </div>
+
+                </li>
                 {{/each}}
             </ul>
         </div>
 
-        
+
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        generateSelect2('#content-board .dropdown');
+    });
+</script>
 
 <style>
     .board-main-row {
@@ -173,50 +206,56 @@
         border-top: 3px solid #28a745;
         box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
     }
+
     .board-main {
         display: flex;
     }
+
     .board-main-content {
         display: grid;
     }
 
-    .detail-task {
+    .detail-issue {
         display: flex;
-        
+
     }
 
-    .detail-task-col1,.detail-task-col2  {
+    .detail-issue-col1,
+    .detail-issue-col2 {
         color: rgb(33, 37, 41);
         border-radius: .25rem;
-         border-top: 3px solid #28a745;
+        border-top: 3px solid #28a745;
         box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
-        
+
     }
-    .detail-task-col1{
+
+    .detail-issue-col1 {
         margin: 25px 0px 20px 30px;
     }
 
-    .detail-task-col2 {
-        margin: 25px 20px 20px 0px;   
+    .detail-issue-col2 {
+        margin: 25px 20px 20px 0px;
     }
-  
+
 
     .card-header {
         background-color: #fff;
     }
 
-    .badge-primary{
-    color: #fff;
-    background-color: #007bff;
+    .badge-primary {
+        color: #fff;
+        background-color: #007bff;
     }
+
     .users-list li {
         list-style-type: none;
     }
+
     .users-list-name {
         color: #000;
         text-decoration: none;
     }
-    
+
     .dropdown-menu {
         margin: 40px 70px 0 0;
     }
@@ -239,49 +278,64 @@
 
     .status {
         margin-right: 8px;
-        
+
     }
 
     .headerCol {
         display: -webkit-box;
     }
 
-    .countTask {
-        width: 25px;
-    background: #ccc;
-    height: 20px;
-    border-radius: 30px;
-}
+    .countissue {
+        width: 24px;
+        height: 24px;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #d9d9d9;;
+        margin-top: -2px;
+        font-weight: 600;
+    }
 
-    .itemTask {
+    .itemissue {
         padding: 10px;
         display: flex;
-        border: 1px solid #bdbdbd;
+        border: 1px solid #d6d6d6;
+        border-radius: 3px;
         margin-bottom: 10px;
     }
 
-    .nameTask {
+    .nameissue {
         margin-bottom: 5px;
     }
 
     .mainCol li:hover {
-    background-color: #f8f9fa;
-    cursor: pointer;    
+        background-color: #f8f9fa;
+        cursor: pointer;
     }
 
     .session-view {
-        margin-left: 50px;
+        margin-left: 0.5em;
     }
 
-    .due{
-         font-size: 14px;
+    .type {
+        font-size: 12px;
+        padding: 3px 5px;
+        color: #fff;
+        background-color: #4caf93;
+        border-radius: 3px;
     }
-}
+
+    .due {
+        font-size: 12px;
+    }
+    }
 </style>
 
 <style>
-.board, #item-menu-board{
-    background-color: #f0f0f0 !important; 
-    color: #4c7ebf !important;
-  }
+    .board,
+    #item-menu-board {
+        background-color: #f0f0f0 !important;
+        color: #4c7ebf !important;
+    }
 </style>

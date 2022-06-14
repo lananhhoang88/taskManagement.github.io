@@ -1,112 +1,126 @@
-
-<form action="/home" method="post">
+<form id="login-form" action="/home" method="post">
 	<div>
 		<h1>Login</h1>
 	</div>
 	<div class="form-group">
-		<label>Username: </label>
-		<input 
-			type="text" 
-			name="userName" 
-			id="userName" 
-			placeholder="Enter your username" 
-			required />
+		<label>Email: </label>
+		<input type="text" name="email" id="email" placeholder="Enter your email" required />
 	</div>
 	<div class="form-group">
 		<label>Password:</label>
-		<input 
-			type="password" 
-			name="password" 
-			id="password"
-			placeholder="Enter your password" 
-			required />
+		<input type="password" name="password" id="password" placeholder="Enter your password" required />
 	</div>
 	<div>
 		<input type="submit" value="Login" />
 	</div>
+	{{#if @root.message}}
+	<script>
+		alert('Sai mật khẩu');
+	</script>
+	{{/if}}
 </form>
 
+<script>
+	$(document).ready(function () {
+		$("#login-form input[type='submit']").click(function (e) {
+			e.preventDefault();
+			$.post('/home', $('#login-form').serialize(), res => {
+				if (!res.success) {
+					alert(res.message);
+					// Mấy cái token e chưa sử dụng làm gì đúng k Vâng
+					// Cái đoạn đăng nhập này lằng nhằng phết đó
+					// A làm ltinh thế này cô giáo mà đọc thì móm
+					// Cô liệu đọc hem Không á
+				}
+				else {
+					window.location.href = '/home';
+				}
+			});
+		});
+	});
+</script>
+
 <style>
-    form {
-	display: block;
-	width: 100%;
-	max-width: 400px;
-	padding: 50px 30px;
-	background-image: linear-gradient(to bottom, #00BC7E, #108775);
-	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-	border-radius: 16px;
-    position: absolute;
-    margin: 100px 500px;
-}
+	form {
+		display: block;
+		width: 100%;
+		max-width: 400px;
+		padding: 50px 30px;
+		background-image: linear-gradient(to bottom, #00BC7E, #108775);
+		box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+		border-radius: 16px;
+		position: absolute;
+		margin: 100px 500px;
+	}
 
-form h1 {
-	color: #FFF;
-	font-size: 36px;
-	text-transform: uppercase;
-	margin-bottom: 30px;
-}
+	form h1 {
+		color: #FFF;
+		font-size: 36px;
+		text-transform: uppercase;
+		margin-bottom: 30px;
+	}
 
-.err-msg {
-	padding: 10px 15px;
-	background-color: #fff;
-	border-radius: 8px;
-	margin-bottom: 15px;
-	color: red;
-	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-}
+	.err-msg {
+		padding: 10px 15px;
+		background-color: #fff;
+		border-radius: 8px;
+		margin-bottom: 15px;
+		color: red;
+		box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+	}
 
-form .form-group {
-	margin-bottom: 30px;
-}
+	form .form-group {
+		margin-bottom: 30px;
+	}
 
-form label {
-	display: block;
-	color:#eee;
-	font-size: 14px;
-	margin-bottom: 5px;
-}
+	form label {
+		display: block;
+		color: #eee;
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
 
-form input {
-	appearance: none;
-	background: none;
-	outline: none;
-	border: none;
-}
+	form input {
+		appearance: none;
+		background: none;
+		outline: none;
+		border: none;
+	}
 
-form input:not([type="submit"]) {
-	display: block;
-	width: 100%;
-	padding: 15px;
-	border-radius: 8px;
-	background-color: rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-	transition: 0.4s;
-	color: #222;
-	font-size: 18px;
-	font-weight: 300;
-}
+	form input:not([type="submit"]) {
+		display: block;
+		width: 100%;
+		padding: 15px;
+		border-radius: 8px;
+		background-color: rgba(0, 0, 0, 0.2);
+		box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+		transition: 0.4s;
+		color: #222;
+		font-size: 18px;
+		font-weight: 300;
+	}
 
-form input:not([type="submit"])::placeholder {
-	color: #CCC;
-}
+	form input:not([type="submit"])::placeholder {
+		color: #CCC;
+	}
 
-form input:not([type="submit"]):focus, form input:not([type="submit"]):valid {
-	background-color: #fff;
-	box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-}
+	form input:not([type="submit"]):focus,
+	form input:not([type="submit"]):valid {
+		background-color: #fff;
+		box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+	}
 
-form input[type="submit"] {
-	display: block;
-	width: 100%;
-	padding: 15px;
-	border-radius: 8px;
-	background-color: #2F4960;
-	box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-	transition: 0.4s;
-	color: #FFF;
-	font-size: 20px;
-	font-weight: 700;
-	cursor: pointer;
-}
+	form input[type="submit"] {
+		display: block;
+		width: 100%;
+		padding: 15px;
+		border-radius: 8px;
+		background-color: #2F4960;
+		box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+		transition: 0.4s;
+		color: #FFF;
+		font-size: 20px;
+		font-weight: 700;
+		cursor: pointer;
+	}
 </style>
-

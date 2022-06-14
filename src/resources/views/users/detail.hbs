@@ -1,0 +1,221 @@
+{{>header}}
+{{>slidebar}}
+<div id='edit-user' class="edit-user">
+    <div class="content-wrapper-header">
+        <p> Edit User</p>
+    </div>
+
+    <div class="content-board-main" style="margin: 30px;">
+        <form method="POST" {{#if isFormAdd}}action="/users/store" {{/if}} {{#unless
+            isFormAdd}}action="/users/{{user._id}}?_method=PUT" {{/unless}}
+            style="background-color: #fff; padding: 20px">
+            <div class="col-lg-12 board-main-content">
+                <div class="row board-main-row">
+                    <div class="col-md-12">
+                        <div class="callout callout-info">
+                            <div class="col-md-12">
+                                <div class="row board-main">
+                                    <div class="col-md-6" style="padding-right: 1em">
+                                        <div class="input-add-user">
+                                            <label for="fullName" class="form-label">Full Name</label>
+                                            <input type="text" class="form-control inputIssue" value='{{user.fullName}}'
+                                                id="fullName" name="fullName">
+                                        </div>
+                                        <div class="input-add-user">
+                                            <label for="age" class="form-label">Age</label>
+                                            <input type="text" class="form-control inputIssue" value='{{user.age}}'
+                                                id="age" name="age">
+                                        </div>
+                                        <div class="form-group input-add-user">
+                                            <label for="gender" class="form-label">Gender</label>
+                                            <div class="la-select2">
+                                                <select name="gender" value='{{user.gender}}' id="gender"
+                                                    class="dropdown custom-select custom-select-sm inputIsue"
+                                                    placeholder="Chọn Gender">
+                                                    {{#each lstGender}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.name}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group input-add-user">
+                                            <label for="role" class="form-label">Role</label>
+                                            <div class="la-select2">
+                                                <select name="role" value='{{user.role}}' id="role"
+                                                    class="dropdown custom-select custom-select-sm inputIsue"
+                                                    placeholder="Chọn Role">
+                                                    {{#each lstRole}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.name}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6" style="padding-left: 1em">
+                                        <div class="input-add-user">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" class="form-control inputIssue" value='{{user.email}}'
+                                                id="email" name="email">
+                                        </div>
+
+                                        <div class="input-add-user">
+                                            <label for="numberPhone" class="form-label">Number phone</label>
+                                            <input type="text" class="form-control inputIssue"
+                                                value='{{user.numberPhone}}' id="numberPhone" name="numberPhone">
+                                        </div>
+
+                                        <div class="input-add-user">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="text" class="form-control inputIssue" value='{{user.password}}'
+                                                id="password" name="password">
+                                        </div>
+
+                                        <div class="input-add-user">
+                                            {{!-- <label for="avatar" class="form-label">Avatar</label>
+                                            <input type="file" class="form-control inputIssue" value='{{user.avartar}}'
+                                                id="avatar" name="avatar"> --}}
+                                            <label for="avatar" class="form-label">Avatar</label>
+                                            <input type="hidden" name="avatar" value="" />
+                                            <input type="file" id="avatar" class="form-control inputIssue"
+                                                value="{{user.avatar}}" {{#if user.avatarName}} style="display: none"
+                                                {{/if}}>
+                                            <div class="avatar-info" {{#unless user.avatarName}} style="display: none"
+                                                {{/unless}}>
+                                                <span style="color: blue;">{{user.avatarName}}</span>
+                                                <span class="btn-delete-avatar">Xóa</span>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"
+                                            style="float: right; margin-top: 30px ">Save</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+
+
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#edit-user #avatar').change(function () {
+            const $this = $(this);
+            var filename = $this.val();
+            var fd = new FormData();
+            var files = $this[0].files[0];
+            fd.append('file', files);
+            $.ajax({
+                type: 'POST',
+                url: '/file/upload',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: (returnVal) => {
+                    $this.prev().val(returnVal);
+                    $this[0].style.display = 'none';
+                    $this.next()[0].style.display = 'block';
+                    $this.next()[0].firstElementChild.innerText = files.name;
+                }
+            });
+        });
+
+        $('#edit-user .btn-delete-avatar').click(function () {
+            const parent = $(this)[0].parentElement;
+            parent.style.display = 'none';
+            parent.previousElementSibling.style.display = null;
+            $(parent.previousElementSibling).val(null).prev().val('');
+        });
+
+        generateSelect2('#edit-user .dropdown');
+    });
+</script>
+
+<style>
+    .user,
+    #item-menu-user {
+        background-color: #f0f0f0 !important;
+        color: #4c7ebf !important;
+    }
+</style>
+
+<style>
+    .content-board-main {
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+
+    .board-main-row {
+        background: #fff;
+        padding: 20px 30px;
+        color: rgb(33, 37, 41);
+        display: inline-block;
+
+
+    }
+
+    .board-main {
+        display: flex;
+    }
+
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-user {
+        display: flex;
+
+    }
+
+    .detail-user-col1,
+    .detail-user-col2 {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+
+    }
+
+    .detail-user-col1 {
+        margin: 25px 0px 20px 30px;
+    }
+
+    .detail-user-col2 {
+        margin: 25px 20px 20px 0px;
+    }
+
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary {
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    .users-list li {
+        list-style-type: none;
+    }
+
+    .users-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+</style>

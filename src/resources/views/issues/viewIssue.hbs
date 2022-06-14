@@ -1,0 +1,353 @@
+{{>header}}
+{{>slidebar}}
+
+<div id='content-board' class="display-board">
+    <div class="content-wrapper-header">
+        <p> View Issue </p>
+        <div class="card-tools">
+            <button class="ti-eye btn-watch" id="watch" data-refId="{{issue.id}}" {{#if issue.watched}}
+                style="display: none" {{/if}}><i></i> Watch</button>
+            <button class="ti-eye btn-watch btn-unwatch" id="unwatch" data-refId="{{issue.id}}" {{#unless
+                issue.watched}} style="display: none" {{/unless}}><i></i> Watching</button>
+        </div>
+    </div>
+
+    <div class="col-lg-12 board-main-content">
+        <div class="row board-main-row">
+
+            <div class="col-md-12">
+
+                <div class="callout callout-info">
+                    <div class="col-md-12">
+                        <div class="row board-main">
+                            <div class="col-sm-6" style="padding-right: 1em">
+                                <dl>
+                                    <dt><b class="border-bottom border-primary">Project Name</b></dt>
+                                    <dd>{{issue.projectName}} </dd>
+
+                                    <dt><b class="border-bottom border-primary">Subject</b></dt>
+                                    <dd>{{issue.subject}} </dd>
+
+                                    <dl>
+                                        <dt><b class="border-bottom border-primary">Start Date</b></dt>
+                                        <dd>{{issue.startDate}}</dd>
+                                    </dl>
+
+                                    <dl>
+                                        <dt><b class="border-bottom border-primary">Assignee</b></dt>
+                                        <dd>
+                                            <div class="d-flex align-items-center mt-1">
+                                                <b>{{issue.assigneeName}} </b>
+                                            </div>
+                                        </dd>
+                                    </dl>
+
+                                    <dt><b class="border-bottom border-primary">Category</b></dt>
+                                    <dd>{{issue.categoryName}} </dd>
+
+                                </dl>
+                            </div>
+
+                            <div class="col-md-6" style="padding-left: 1em">
+                                <dl>
+                                    <dt><b class="border-bottom border-primary">Issue Type</b></dt>
+                                    <dd>{{issue.typeName}} </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt><b class="border-bottom border-primary">Status</b></dt>
+                                    <dd>
+                                        <span class="badge badge-primary">{{issue.statusName}}</span>
+                                    </dd>
+                                </dl>
+
+                                <dt><b class="border-bottom border-primary">Due Date</b></dt>
+                                <dd>{{issue.dueDate}}</dd>
+                                </dl>
+                                <dt><b class="border-bottom border-primary">Priority</b></dt>
+                                <dd>{{issue.priorityName}} </dd>
+
+
+                                <dl>
+
+                                    <dt><b class="border-bottom border-primary">Description</b></dt>
+                                    <dd> {{issue.description}} </dd>
+                                    <dt><b class="border-bottom border-primary">Attachment</b></dt>
+                                    <dd>{{issue.attachmentName}}</dd>
+                                </dl>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="comment">
+            <div class="comment-header">
+                <p> Comments </p>
+            </div>
+            <div class="comment-container">
+                <form action="/issues/comment" method="post">
+                    <input type="hidden" value="{{@root.originalUrl}}" name="originalUrl" />
+                    <input type="hidden" value="{{issue.id}}" name="itemId" />
+                    <div class="__input">
+                        <div class="input fit">
+                            <textarea id="inputComment" name="inputComment"></textarea>
+                        </div>
+                        <div class="no-margin">
+                            <button type="submit" class="primary-button btnComment">Comment</button>
+                        </div>
+                    </div>
+                </form>
+                {{#each lstComment}}
+                <div class="comment-row">
+                    <div class="user-created">
+                        <div class="avatar-container">
+                            <div class="avatar"><img src="/file/download/{{this.avatar}}" /></div>
+                        </div>
+                        <div class="fullname">{{this.fullName}}</div>
+                        <div class="time">{{formatDate this.created}}</div>
+                    </div>
+                    <div class="comment-right-content">
+                        <div class="icon-comment"><img src="/file/download/comment.png" /></div>
+                        <div class="content">{{this.content}}</div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#watch").click(function () {
+            const issueId = $(this).attr('data-refId');
+            $.post(`/issues/watch/${issueId}`, res => {
+                if (res.success) {
+                    $(this)[0].style.display = 'none';
+                    $("#unwatch")[0].style.display = null;
+                }
+            });
+        });
+
+        $("#unwatch").click(function () {
+            const issueId = $(this).attr('data-refId');
+            $.post(`/issues/unwatch/${issueId}`, res => {
+                if (res.success) {
+                    $(this)[0].style.display = 'none';
+                    $(this)[0].style.color = 'white';
+                    $("#watch")[0].style.display = null;
+                }
+            });
+        });
+    })
+</script>
+
+<style>
+    .issue,
+    #item-menu-issue {
+        background-color: #f0f0f0 !important;
+        color: #4c7ebf !important;
+    }
+
+    .board-main-row {
+        margin: 25px 20px 20px 30px;
+        background: #fff;
+        padding: 40px 40px;
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border: 1px solid #c2c2c2;
+        display: inline-block;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+
+    .board-main {
+        display: flex;
+    }
+
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-issue {
+        display: flex;
+
+    }
+
+    .detail-issue-col1,
+    .detail-issue-col2 {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+
+    }
+
+    .detail-issue-col1 {
+        margin: 25px 0px 20px 30px;
+    }
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary {
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    .users-list li {
+        list-style-type: none;
+    }
+
+    .users-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+
+    .btn-watch {
+        margin-top: 10px;
+        font-weight: 500;
+        color: #251b1b;
+        float: right;
+        border-radius: 20px;
+        font-size: 17px;
+        padding: 7px 10px;
+        background-color: #fff;
+        border: solid 1px #d8d8d8;
+    }
+
+    .btn-watch:hover {
+        background-color: #4c7ebf;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .btn-unwatch {
+        margin-top: 10px;
+        background-color: #4c7ebf;
+        color: white;
+    }
+</style>
+
+<style>
+    .comment-header {
+        margin: 0 15px;
+        padding-left: 18px;
+        font-size: 18px;
+        border-bottom: 1px solid #aaa;
+        font-weight: 600;
+    }
+
+    .comment-container {
+        padding: 1.5em;
+    }
+
+    .comment-container>form .__input {
+        display: flex;
+        position: relative;
+    }
+
+    .comment-container>form .__input>div {
+        flex: 0 0 auto;
+        margin-left: 0.5em;
+    }
+
+    .comment-container>form .__input>div:first-child {
+        margin-left: 0;
+    }
+
+    .comment-container>form .__input .fit {
+        flex: 1 1;
+    }
+
+    .comment-container>form textarea {
+        width: 100%;
+        border: 1px solid #d0d0d0;
+        resize: none;
+        border-radius: 3px;
+        outline: none;
+        padding: 0.5em;
+    }
+
+    #inputComment {
+        padding: 0.5em 8em 0.5em 0.5em !important;
+    }
+
+    .btnComment {
+        position: absolute;
+        margin-top: 17px;
+        position: absolute;
+        right: calc(1em + 3px);
+    }
+
+    .comment-container>form .__input>div.no-margin {
+        margin-left: 0;
+    }
+
+    .comment-row {
+        border-bottom: 1px solid #cacaca;
+        padding: 0.5em;
+    }
+
+    .user-created {
+        display: flex;
+        align-items: center;
+    }
+
+    .user-created .avatar-container {
+        width: 20px;
+    }
+
+    .user-created .avatar-container>div {
+        border-radius: 100%;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-created .avatar-container>div,
+    .user-created .avatar-container>div>img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .user-created>div {
+        margin-left: 5px;
+    }
+
+    .user-created>div:first-child {
+        margin-left: 0;
+    }
+
+    .user-created .fullname {
+        font-weight: 500;
+    }
+
+    .user-created .time {
+        font-size: 0.7em;
+        font-style: italic;
+        margin-top: 2px;
+    }
+
+    .comment-right-content {
+        display: flex;
+    }
+
+    .icon-comment {
+        flex: 0 0 20px;
+        margin-right: 5px;
+    }
+
+    .icon-comment>img {
+        width: 100%
+    }
+</style>

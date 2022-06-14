@@ -1,31 +1,35 @@
+{{>header}}
 <div id="slide-bar">
             <div class="header-sliderbar">
-                <a href="#" class="role-user">
-                    <h3 class="text-role">{{!-- {{user.role}} --}}Manager</h3>
-                </a>
+                <i id="menu-btn" class="ti-menu"></i>
+                {{!-- <a href="#" class="role-user">
+                    <h3 class="text-role"></h3>
+
+                
+                </a> --}}
 
             </div>
 
             <div class="content-slidebar">
-                <li onclick="HomeClick()" class="dashboard" id="dashboard">
+                <li onclick="HomeClick()" class="list dashboard" id="dashboard">
                     <div>
-                        <i id ='ti-dashboard'class="ti-dashboard"></i>
-                        <a id = 'item-menu'class="item-menu" href="/home" >Dashboard</a>
+                        <i id ='ti-home'class="icon-menu ti-home"></i>
+                        <a id = 'item-menu'class="item-menu" href="/home" >Home</a>
                     </div> 
                 </li>
-                <li onclick = "clicky()" class="task">
+                <li onclick = "clicky()" class="list project">
                     <div>
-                        <i  class="ti-list"></i>
-                        <a id = "item-menu-task" class="item-menu" href="#">Task</a>
+                        <i  class="icon-menu ti-receipt"></i>
+                        <a id = "item-menu-project" class="item-menu" href="#">Projects</a>
                         <i class = 'ti-angle-up menuClick'></i>
                     </div>
                     <div id = "menuclick" class="click-content">
-                        <a href="/tasks/create" class="add-task">
+                        <a href="/projects/create" class="add-issue">
                             <i id = 'add new' class="ti-angle-right">
                                 Add New
                             </i>
                         </a>
-                        <a href="/tasks/show" class="list-task">
+                        <a href="/projects/list" class="list-project">
                             <i class="ti-angle-right">
                                 List
                             </i>
@@ -34,27 +38,48 @@
                     </div>
                 </li>
 
-                <li class="board">
+                <li onclick = "clickyIssue()" class="list issue">
+                    <div>
+                        <i  class="icon-menu ti-list"></i>
+                        <a id = "item-menu-issue" class="item-menu" href="#">Issues</a>
+                        <i class = 'ti-angle-up menuClick'></i>
+                    </div>
+                    <div id = "menuClickIssue" class="click-content-issue">
+                        <a href="/issues/create" class="add-issue">
+                            <i id = 'add new' class="ti-angle-right">
+                                Add New
+                            </i>
+                        </a>
+                        <a href="/issues/list" class="list-issue">
+                            <i class="ti-angle-right">
+                                List
+                            </i>
+                        </a>
+                        
+                    </div>
+                </li>
+
+                <li class="list board">
                     <div class="">
-                        <i class="ti-bar-chart"></i>
+                        <i class="icon-menu ti-bar-chart"></i>
                         <a id = "item-menu-board" class="item-menu" href="/reports/board">Board</a>
                     </div>
                 </li>
-                <li class="report">
+                <li class="list report">
                     <div class="">
-                        <i class="ti-clipboard"></i>
+                        <i class="icon-menu ti-clipboard"></i>
                         <a id = "item-menu-report"class="item-menu" href="/reports/report">Report</a>
                     </div>
                 </li>
-                <li class="gantt-chart">
+                <li class="list gantt-chart">
                     <div class="">
-                        <i class="ti-align-left"></i>
+                        <i class="icon-menu ti-align-left"></i>
                         <a id= "item-menu-gantt"class="item-menu" href="/reports/gantt">Gantt Chart</a>
                     </div>
                 </li>
-                <li onclick = "clickyUser()" class="user">
+                <li onclick = "clickyUser()" class="list user">
                     <div class="">
-                        <i class="ti-user"></i>
+                        <i class="icon-menu ti-user"></i>
                         <a id = "item-menu-user"class="item-menu" href="#">Users</a>
                         <i class="ti-angle-up"></i>
                     </div>
@@ -64,9 +89,39 @@
                                 Add New
                             </i>
                         </a>
-                        <a href="/users/show" class="list-user">
+                        <a href="/users/list" class="list-user">
                             <i class="ti-angle-right">
                                 List
+                            </i>
+                        </a>
+                    </div>
+                </li>
+
+                <li onclick = "clickyDirec()" class="list direc">
+                    <div class="">
+                        <i class="icon-menu ti-folder"></i>
+                        <a id = "item-menu-direc"class="item-menu" href="#">Directory</a>
+                        <i class="ti-angle-up"></i>
+                    </div>
+                    <div id="menuClickDirec" class="click-content-direc">
+                        <a href="/categories/list" class="list-direc">
+                            <i class="ti-angle-right">
+                                Categories
+                            </i>
+                        </a>
+                        <a href="/issueTypes/list" class="list-direc">
+                            <i class="ti-angle-right">
+                                Issue Types
+                            </i>
+                        </a>
+                        <a href="/issueStatuses/list" class="list-direc">
+                            <i class="ti-angle-right">
+                                Status Category
+                            </i>
+                        </a>
+                        <a href="/PriorityLevels/list" class="list-direc">
+                            <i class="ti-angle-right">
+                                Priority Levels
                             </i>
                         </a>
                     </div>
@@ -83,9 +138,51 @@
         document.getElementById('menuclick').classList.toggle('show');
     }
 
+    function clickyIssue() {
+    document.getElementById('menuClickIssue').classList.toggle('show');
+    }
 
     function clickyUser() {
     document.getElementById('menuClickUser').classList.toggle('show');
-}
+    }
+
+    function clickyDirec() {
+    document.getElementById('menuClickDirec').classList.toggle('show');
+    }
+
+    /*//Dropdown side
+    let menuToggle = document.querySelector('#menu-btn');
+    //let container = document.querySelector('.container');
+    let navigation = document.querySelector('#slide-bar');
+    let navList = document.querySelector('.content-slidebar');
+    
+    menuToggle.onclick = function(e){
+        //container.classList.toggle('active');
+        navigation.classList.toggle('active');
+        navList.classList.toggle('active');
+    }
+    let list = document.querySelectorAll('.list');
+    const FuncName1 = [
+        'Dashboard',
+        'Issue',
+        'Board',
+        'Report',
+        'Gantt Chart',
+        'Users'
+    ];
+  
+    for( let i= 0; i < list.length; i++){
+        list[i].onclick = function(){
+            let j = 0;
+            while( j < list.length){
+                let tmp = j++;
+                list[tmp].className = 'list';
+            }
+            list[i].className = 'list active';
+            document.getElementById('content-header').innerHTML = `${FuncName1[i]}`;
+            
+        }
+    }
+        */
 
 </script>

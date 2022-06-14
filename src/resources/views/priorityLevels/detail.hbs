@@ -1,0 +1,128 @@
+{{>header}}
+{{>slidebar}}
+<div id='edit-priorityLevel' class="edit-priorityLevel">
+    <div class="content-wrapper-header">
+        <p> Edit Priority Level</p>
+    </div>
+
+    <div class="content-board-main" style="margin: 30px;">
+        <form method="POST" {{#if isFormAdd}}action="/priorityLevels/store" {{/if}} {{#unless
+            isFormAdd}}action="/priorityLevels/{{priorityLevel._id}}?_method=PUT" {{/unless}}
+            style="background-color: #fff; padding: 20px">
+            <div class="col-lg-12 board-main-content">
+                <div class="row board-main-row">
+                    <div class="col-md-12">
+                        <div class="callout callout-info">
+                            <div class="col-md-12">
+                                <div class="row board-main">
+                                    <div class="col-sm-6" style="padding-right: 1em">
+
+                                        <div class="input-add-priorityLevel">
+                                            <label for="priorityLevelName" class="form-label">Priority Level
+                                                Name</label>
+                                            <input type="text" class="form-control inputPriority Level"
+                                                value='{{priorityLevel.priorityLevelName}}' id="priorityLevelName"
+                                                name="priorityLevelName" style="margin: 0 0 0 20px !important;">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6" style="padding-left: 1em">
+
+                                        <div class="input-add-priorityLevel">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea type="text" class="form-control inputPriority Level"
+                                                id="description" name="description"
+                                                style="height: 100px; margin: 0 0 0 20px !important;"> {{priorityLevel.description}}</textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary"
+                                            style="float: right; margin-top: 45px">Save</button>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        </form>
+
+    </div>
+</div>
+
+<style>
+    .direc,
+    #item-menu-direc {
+        background-color: #f0f0f0 !important;
+        color: #4c7ebf !important;
+    }
+</style>
+
+<style>
+    .content-board-main {
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+
+    .board-main-row {
+        background: #fff;
+        padding: 20px 30px;
+        color: rgb(33, 37, 41);
+        display: inline-block;
+
+
+    }
+
+    .board-main {
+        display: flex;
+    }
+
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-priorityLevel {
+        display: flex;
+
+    }
+
+    .detail-priorityLevel-col1,
+    .detail-priorityLevel-col2 {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+
+    }
+
+    .detail-priorityLevel-col1 {
+        margin: 25px 0px 20px 30px;
+    }
+
+    .detail-priorityLevel-col2 {
+        margin: 25px 20px 20px 0px;
+    }
+
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary {
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    .priorityLevels-list li {
+        list-style-type: none;
+    }
+
+    .priorityLevels-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+</style>

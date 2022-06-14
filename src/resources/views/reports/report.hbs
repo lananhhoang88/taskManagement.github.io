@@ -8,14 +8,14 @@
 
             <div class="content-board-main">
             <div class="card-header">
-                    <b>Task Progress</b>
+                    <b>Project Progress</b>
                     <div class="card-tools">
                         <button class="ti-printer btn-print" id="print"><i></i> Print</button>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive" id="printable">
-                        <table class="task-progress">
+                        <table class="project-progress">
                             <colgroup>
                             <col width="5%">
                             <col width="30%">
@@ -28,20 +28,20 @@
                             <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Project</th>
                                 <th>Task</th>
-                                <th>Task Detail</th>
-                                <th>Completed Task Detail</th>
+                                <th>Completed Task</th>
                                 <th>Progress</th>
                                 <th>Status</th>
                             </tr></thead>
 
                             <tbody>
-                                {{#each task}}
+                                {{#each project}}
                                 <tr>
                                     <td>{{sum @index 1}}</td>
                                     <td>
                                         <a>
-                                            {{this.taskName}}                           </a>
+                                            {{this.projectName}}                           </a>
                                         <br>
                                         <small>
                                             Due: {{this.endDate}}                         </small>

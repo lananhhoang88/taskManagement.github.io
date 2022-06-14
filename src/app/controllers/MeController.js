@@ -1,6 +1,5 @@
-const Course = require('../models/Course');
 const User = require('../models/User');
-const Task = require('../models/Task');
+const Task = require('../models/Issue');
 
 const { mongooseToObject } = require('../../util/mongoose');
 const { multipleMongooseToObject } = require('../../util/mongoose');

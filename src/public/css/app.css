@@ -1,4 +1,3 @@
-
 * {
     padding: 0;
     margin: 0;
@@ -21,12 +20,13 @@ html {
     width: -webkit-fill-available;
     background-color: #fff;
     color: #333;
-   border-bottom: 1px solid #c2c2c2;
-    border-radius: .25rem;
+    border-bottom: 1px solid #c2c2c2;
+    border-radius: 0.25rem;
     z-index: 2;
-
 }
-.show {display: block!important;}
+.show {
+    display: block !important;
+}
 
 .content-header {
     display: inline-block;
@@ -36,10 +36,9 @@ html {
 .content-header li {
     display: inline-block;
     text-align: center;
- 
 }
 
-.header-icon{
+.header-icon {
     height: 24px;
 }
 
@@ -50,6 +49,7 @@ html {
 
 .user-search {
     float: right;
+    display: flex;
 }
 
 .user-space:hover .manage-account {
@@ -57,21 +57,22 @@ html {
 }
 
 .nav-user-space {
-    padding: 8px 16px;
+    padding: 0px 16px;
 }
 
 .user-search li {
     display: inline-block;
 }
 
-.user-space:hover, .search-space:hover {
+.user-space:hover,
+.search-space:hover {
     cursor: pointer;
 }
 
 .search-space {
     height: 30px;
     line-height: 3rem;
-    border-radius: 20px;
+    border-radius: 40px;
     text-align: center;
 }
 
@@ -79,12 +80,40 @@ html {
     height: 30px;
 }
 
+.user_message,
+.user_notification,
+.user_helf {
+    height: 35px;
+    width: 35px;
+    border-radius: 40px;
+    margin: 0 10px;
+    background: #1c1e21;
+    opacity: 0.6;
+}
+
+.user-search .icon-header {
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    display: inherit;
+    color: #fff;
+    cursor: pointer;
+}
+
+.user_img {
+    padding: 5px;
+    height: 40px;
+    width: 40px;
+    border-radius: 40px;
+    margin-right: 0 10px;
+}
+
 .manage-account {
     padding: 8px 1px;
     height: 105px;
     text-decoration: none;
     background-color: #fff;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 18%);
     display: none;
     position: absolute;
@@ -95,7 +124,6 @@ html {
     padding: 4px 16px;
     display: block;
     color: #16181b;
-
 }
 
 .manage-account a:hover {
@@ -103,7 +131,7 @@ html {
     cursor: pointer;
 }
 
-.manage-account a>i::before {
+.manage-account a > i::before {
     padding-right: 8px;
 }
 
@@ -116,12 +144,26 @@ html {
 /*start Slide-bar */
 #slide-bar {
     width: 200px;
-    height: 748px;
-    background-color:#4c7ebf;
+    height: -webkit-fill-available;
+    background-color: #4c7ebf;
     display: inline-block;
     color: #e5e5e5;
     font-size: 15px;
     position: fixed;
+}
+
+#slide-bar .active {
+    width: 50px;
+}
+
+#slide-bar .active #menu-btn {
+    left: 90%;
+}
+
+#slide-bar .active .item-menu,
+#slide-bar .active .ti-angle-up {
+    opacity: 0;
+    pointer-events: auto;
 }
 
 .header-sliderbar {
@@ -133,6 +175,12 @@ html {
 
 #slide-bar .role-user {
     text-decoration: none;
+}
+
+#slide-bar .ti-menu {
+    float: right;
+    color: #fff;
+    font-size: 22px;
 }
 
 #slide-bar .role-user h3 {
@@ -149,16 +197,25 @@ html {
 }
 
 .content-slidebar li div {
-    padding: 20px 20px 13px 16px;
+    padding: 14px 20px 14px 16px;
+    font-size: 16px;
 }
 
-.content-slidebar li:hover, .content-slidebar li:hover .item-menu {
+.content-slidebar li div .icon-menu {
+    font-size: 1.3rem;
+}
+
+.content-slidebar li:hover,
+.content-slidebar li:hover .item-menu {
     background-color: #e5e5e5;
     color: #4c7ebf;
     cursor: pointer;
 }
 
-#menuclick a:hover, #menuClickUser a:hover {
+#menuclick a:hover,
+#menuClickUser a:hover,
+#menuClickDirec a:hover,
+#menuClickIssue a:hover {
     background-color: #e5e5e5;
     color: #4c7ebf;
     cursor: pointer;
@@ -170,41 +227,56 @@ html {
     font-weight: 600;
 }
 
-.content-slidebar li i{
-    padding: 10px;
+.content-slidebar li i {
+    padding-right: 10px;
 }
 
 .content-slidebar li .ti-angle-up {
-    float: right!important;
+    float: right !important;
     text-align: center;
     padding: 0;
 }
 
-li .click-content a, li .click-content-user a{
+li .click-content a,
+li .click-content-user a,
+li .click-content-direc a,
+li .click-content-issue a {
     display: block;
 }
 
-.click-content,  .click-content-user {
+.click-content,
+.click-content-user,
+.click-content-direc,
+.click-content-issue {
     display: none;
     background-color: #fff;
     padding: 0px;
     min-width: 160px;
     overflow: auto;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
-#menuclick, #menuClickUser {
+#menuclick,
+#menuClickUser,
+#menuClickIssue,
+#menuClickDirec {
     padding: 0px;
 }
-    
-.click-content a, .click-content-user a {
-    color: #4c7ebf!important;
+
+.click-content a,
+.click-content-user a,
+.click-content-issue a,
+.click-content-direc a {
+    color: #4c7ebf !important;
     padding: 12px 16px;
     text-decoration: none;
     display: block;
 }
 
-.click-content a i, .click-content-user a i {
+.click-content a i,
+.click-content-user a i,
+.click-content-issue a i,
+.click-content-direc a i {
     font-weight: 600;
 }
 /*end Slide-bar */
@@ -220,25 +292,59 @@ li .click-content a, li .click-content-user a{
     margin: 0 15px;
     padding-top: 49px;
     padding-left: 18px;
-    height: 110px;
     font-size: 26px;
     border-bottom: 1px solid #4c7ebf;
 }
 
 .content-wrapper-header p {
     color: #333;
-    padding-top: 15px;
+    padding: 15px 0;
+}
+.header-filter {
+    font-size: initial;
+    margin-bottom: 0.5em;
+}
+.header-filter form {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
-.user-add{
+.header-filter form input[type="text"] {
+    outline: none;
+    padding: 0 0.5em;
+    height: 100%;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+
+.header-filter form > * {
+    margin-right: 0.5em;
+}
+
+.header-filter form > *:last-child {
+    margin-right: 0;
+}
+
+.header-filter form .la-select2,
+.header-filter form select {
+    min-width: 150px;
+    height: 34px;
+}
+
+.header-filter .la-select2,
+.header-filter .la-select2 .select2-container,
+.header-filter .la-select2 .select2-selection {
+    height: 100%;
+}
+
+.user-add {
     display: none;
     width: 100%;
     height: 100%;
     background-color: burlywood;
     position: relative;
-
 }
-
 
 .display-Report .content-board-main {
     width: -webkit-fill-available;
@@ -246,12 +352,11 @@ li .click-content a, li .click-content-user a{
     background-color: #fff;
     min-height: 550px;
     color: rgb(33, 37, 41);
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     border: 1px solid #c2c2c2;
     display: inline-block;
     border-top: 3px solid #28a745;
     box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
-
 }
 
 .display-Report .content-board-main .card-header {
@@ -268,34 +373,46 @@ li .click-content a, li .click-content-user a{
     height: 30px;
 }
 
-.table-responsive .task-progress {
+.table-responsive .issue-progress,
+.table-responsive .project-progress {
     width: -webkit-fill-available;
     padding: 15px 20px;
 }
 
-.task-progress-list, td, th {
+.issue-progress-list,
+td,
+th,
+.project-progress-list {
     border: 2px solid #ddd;
     text-align: left;
 }
 
-.task-progress-list th, td {
+.issue-progress-list th,
+td,
+.project-progress-list th {
     padding: 15px;
 }
-.task-progress, td, th {  
+.issue-progress,
+.project-progress,
+td,
+th {
     border: 2px solid #ddd;
     text-align: left;
 }
-  
-.task-progress, .task-progress-list {
+
+.issue-progress,
+.issue-progress-list,
+.project-progress,
+.project-progress-list {
     border-collapse: collapse;
     width: 100%;
 }
-  
-.task-progress th, td {
+
+.issue-progress th,
+.project-progress th,
+td {
     padding: 15px;
 }
-
-
 
 /*manage account*/
 .main-edit-account {
@@ -314,60 +431,59 @@ li .click-content a, li .click-content-user a{
     margin: 24px;
     align-self: center;
     box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
-  }
+}
 .form .heading {
     font-size: 1.25rem;
 }
-  
+
 .form-group {
     display: flex;
     margin-bottom: 16px;
     flex-direction: column;
-  }
-  
+}
+
 .form-label,
 .form-message {
     text-align: left;
-  }
-  
+}
+
 .form-label {
     font-weight: 700;
     padding-bottom: 6px;
     line-height: 1.8rem;
     font-size: 1rem;
-  }
-  
+}
+
 .form-control {
-    height: 40px;
+    height: 32px;
     padding: 8px 12px;
     border: 1px solid #b3b3b3;
     border-radius: 3px;
     outline: none;
     font-size: 1rem;
-  }
-  
-.editAccountInput {
-    width: -webkit-fill-available !important; 
+}
 
+.editAccountInput {
+    width: -webkit-fill-available !important;
 }
 .form-control:hover {
     border-color: #1dbfaf;
-  }
-  
+}
+
 .form-group.invalid .form-control {
     border-color: #f33a58;
-  }
-  
+}
+
 .form-group.invalid .form-message {
     color: #f33a58;
-  }
-  
+}
+
 .form-message {
     font-size: 1rem;
     line-height: 1.6rem;
     padding: 4px 0 0;
-  }
-  
+}
+
 .form-submit {
     outline: none;
     background-color: #1dbfaf;
@@ -380,207 +496,297 @@ li .click-content a, li .click-content-user a{
     font-size: 14px;
     border-radius: 8px;
     cursor: pointer;
-  }
-  
+}
+
 .form-submit:hover {
     background-color: #1ac7b6;
-  }
-  
+}
+
 .spacer {
-  margin-top: 36px;
+    margin-top: 36px;
 }
 
 /*CONTENT HOME*/
 
-
 .content-wrapper-content .session-welcome {
-  margin: 30px;
-  height: 64px;
-  padding: 20px;
-  background-color: #ffff;
-  color: rgb(33, 37, 41);
-  border-radius: .25rem;
-  border: 1px solid #c2c2c2;
-  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    margin: 30px;
+    height: 64px;
+    padding: 20px;
+    background-color: #ffff;
+    color: rgb(33, 37, 41);
+    border-radius: 0.25rem;
+    border: 1px solid #c2c2c2;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
 }
 
-
-.session-main .task-progress {
-  width: 60%;
-  margin-left: 20px;
-  height: 465px;
-  background-color: #fff;
-  color: rgb(33, 37, 41);
-  border-radius: .25rem;
-  border: 1px solid #c2c2c2;
-  display: inline-block;
-  border-top: 3px solid #28a745;
-  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+.session-main .issue-progress,
+.session-main .project-progress {
+    width: 60%;
+    margin-left: 20px;
+    height: 465px;
+    background-color: #fff;
+    color: rgb(33, 37, 41);
+    border-radius: 0.25rem;
+    border: 1px solid #c2c2c2;
+    display: inline-block;
+    border-top: 3px solid #28a745;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
 }
 
 .session-main .total {
-  position: absolute;
-  width: 27%;
-  height: 465px;
-  margin-left: 15px;
-  color: rgb(33, 37, 41);
-  display: inline-block;
+    position: absolute;
+    width: 27%;
+    height: 465px;
+    margin-left: 15px;
+    color: rgb(33, 37, 41);
+    display: inline-block;
 }
 
-.session-main .task-progress .task-pro-header {
-  position: relative;
-  color: #212529;
-  font-weight: 600;
-  height: 48px;
-  padding: 12px 20px;
-}
- 
-
-.task-progress .task-pro-body .task-progress-list {
-  height: 48px;
-  padding: 12px 20px;
-  width: -webkit-fill-available;
+.session-main .issue-progress .issue-pro-header,
+.session-main .project-progress .project-pro-header {
+    position: relative;
+    color: #212529;
+    font-weight: 600;
+    height: 48px;
+    padding: 12px 20px;
 }
 
-.session-main .total .total-tasks {
-  height: 120px;
-  border-radius: .25rem;
-  background-color: #fff;
-  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+.issue-progress .issue-pro-body .issue-progress-list,
+.project-progress .project-pro-body .project-progress-list {
+    height: 48px;
+    padding: 12px 20px;
+    width: -webkit-fill-available;
+}
+
+.session-main .total .total-issues,
+.session-main .total .total-projects {
+    padding: 15px;
+    height: 120px;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
 }
 
 .session-main .total .total-employees {
-  margin-top: 20px;
-  height: 120px;
-  border-radius: .25rem;
-  background-color: #fff;
-  box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    padding: 15px;
+    margin-top: 20px;
+    height: 120px;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
 }
 
-.session-main .total .total-tasks,
-.session-main .total .total-employees {
-  padding: 15px;
+.session-main .total .total-issues,
+.session-main .total .total-projects .session-main .total .total-employees {
+    padding: 15px;
 }
 
 .total .inner,
 .total .icon {
-  display: inline-block;
+    display: inline-block;
 }
 
 .total .inner .count {
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
 }
 
 .total .inner .text-total {
-  padding-top: 6px;
+    padding-top: 6px;
 }
 
 .total .icon {
-  font-size: 60px;
-  float: right;
-  opacity: 0.6;
-  text-align: center;
-  padding-top: 10px;
+    font-size: 60px;
+    float: right;
+    opacity: 0.6;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.text-total-link {
+    text-decoration: none;
+    color: #000;
 }
 
 /*NEW TASK*/
-/* .task .add-task, .task, .task .item-menu  {
+/* .issue .add-issue, .issue, .issue .item-menu  {
     background-color: #f0f0f0 !important; 
     color: #4c7ebf !important;
 } */
 
-
-.add-new-task, #add-new-user, #edit-user, #edit-task, #viewUser {
+.add-new-issue,
+#add-new-user,
+#edit-user,
+#edit-issue,
+#viewUser,
+.add-new-project,
+#edit-project,
+#viewProject,
+#add-new-category,
+#edit-category,
+#viewCategory,
+#add-new-issueType,
+#edit-issueType,
+#viewIssueType,
+#add-new-issueStatus,
+#edit-issueStatus,
+#viewIssueStatus,
+#add-new-priorityLevel,
+#edit-priorityLevel,
+#viewPriorityLevel {
     background-color: #f0f0f0;
     margin-left: 200px;
     width: -webkit-fill-available;
 }
 
-.inputTask {
-    width: -webkit-fill-available !important;
-    margin: 0 30px 10px 30px !important;
+input[type="file"] {
+    height: 40px;
 }
 
-/*taskList*/
-/* .task .list-task, .task, .task .item-menu  {
+/*issueList*/
+/* .issue .list-issue, .issue, .issue .item-menu  {
     background-color: #f0f0f0 !important; 
     color: #4c7ebf !important;
 } */
 
-#display-task {
+#display-issue,
+.display-project,
+.display-category,
+.display-issueType,
+.display-issueStatus,
+.display-priorityLevel {
     background-color: #f0f0f0;
     margin-left: 200px;
-    /* height: 800px */;
+    /* height: 800px */
     width: -webkit-fill-available;
 }
 /*  */
-.display-task .content-task-main {
+.display-issue .content-issue-main,
+.display-project .content-project-main,
+.display-category .content-category-main,
+.display-issueType .content-issueType-main,
+.display-issueStatus .content-issueStatus-main,
+.display-priorityLevel .content-priorityLevel-main {
     width: -webkit-fill-available;
     margin: 30px;
     background-color: #fff;
     min-height: 550px;
     color: rgb(33, 37, 41);
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     border: 1px solid #c2c2c2;
     display: inline-block;
     border-top: 3px solid #28a745;
     box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
-
 }
 
-.display-task .content-task-main .task-list-wrapper {
+.display-issue .content-issue-main .issue-list-wrapper,
+.display-project .content-project-main .project-list-wrapper,
+.display-category .content-category-main .category-list-wrapper,
+.display-issueType .content-issueType-main .issueType-list-wrapper,
+.display-issueStatus .content-issueStatus-main .issueStatus-list-wrapper,
+.display-priorityLevel .content-priorityLevel-main .priorityLevel-list-wrapper {
     padding: 0px 20px;
 }
 
-.content-task-main .task-list-wrapper .search-task {
+.content-issue-main .issue-list-wrapper .search-issue,
+.content-project-main .project-list-wrapper .search-project,
+.content-category-main .category-list-wrapper .search-category,
+.content-issueType-main .issueType-list-wrapper .search-issueType,
+.content-issueStatus-main .issueStatus-list-wrapper .search-issueStatus,
+.content-priorityLevel-main .priorityLevel-list-wrapper .search-priorityLevel {
     /* display: inline-block; */
     float: right;
 }
 
-.btn-search-task {
+.btn-search-issue,
+.btn-search-project,
+.btn-search-category,
+.btn-search-issueType,
+.btn-search-issueStatus,
+.btn-search-priorityLevel {
     width: 60px;
     height: 30px;
 }
 
-.table-task-list .task-list-body {
+.table-issue-list .issue-list-body,
+.table-project-list .project-list-body,
+.table-category-list .category-list-body,
+.table-issueType-list .issueType-list-body,
+.table-issueStatus-list .issueStatus-list-body,
+.table-priorityLevel-list .priorityLevel-list-body {
     width: -webkit-fill-available;
     padding: 0px 20px;
 }
 
-.task-list-body, td, th {
+.issue-list-body,
+td,
+th,
+.project-list-body,
+.category-list-body,
+.issueType-list-body,
+.issueStatus-list-body,
+.priorityLevel-list-body {
     border: 2px solid #ddd;
     text-align: left;
 }
 
-.task-list-body th, td {
+.issue-list-body th,
+.project-list-body th,
+td,
+.issueType-list-body th,
+.category-list-body th,
+.issueStatus-list-body th,
+.priorityLevel-list-body th {
     padding: 15px;
 }
-.task-list-body, td, th {  
+.issue-list-body th,
+.project-list-body th,
+td,
+th,
+.issueType-list-body th,
+.category-list-body th,
+.issueStatus-list-body th,
+.priorityLevel-list-body th {
     border: 2px solid #ddd;
     text-align: left;
 }
-  
-.task-list-body {
+
+.issue-list-body,
+.project-list-body,
+.issueType-list-body,
+.category-list-body,
+.issueStatus-list-body,
+.priorityLevel-list-body {
     border-collapse: collapse;
     width: 100%;
 }
-  
-.task-list-body th, td {
-    padding: 15px;
-}
 
-.content-task-main .task-list-header {
+.content-issue-main .issue-list-header,
+.content-project-main .project-list-header,
+.content-issueType-main .issueType-list-header,
+.content-category-main .category-list-header,
+.content-issueStatus-main .issueStatus-list-header,
+.content-priorityLevel-main .priorityLevel-list-header {
     padding: 12px 20px;
 }
 
-.task-list-header .tool-addnew {
+.issue-list-header .tool-addnew,
+.project-list-header .tool-addnew,
+.issueType-list-header .tool-addnew,
+.category-list-header .tool-addnew,
+.issueStatus-list-header .tool-addnew,
+.priorityLevel-list-header .tool-addnew {
     border-bottom: 2px solid #e5e5e5;
     height: 44px;
 }
 
-.tool-addnew .btn-add-new-task {
+.tool-addnew .btn-add-new-issue,
+.tool-addnew .btn-add-new-project,
+.tool-addnew .btn-add-new-issueType,
+.tool-addnew .btn-add-new-category,
+.tool-addnew .btn-add-new-issueStatus,
+.tool-addnew .btn-add-new-priorityLevel {
     padding-top: 5px;
     text-decoration: none;
     color: #333;
@@ -590,106 +796,181 @@ li .click-content a, li .click-content-user a{
     border: 1px solid #007bff;
 }
 
-.tool-addnew .btn-add-new-task i {
-    padding: 5px
-}
-
-#row-search-task {
+#row-search-issue,
+#row-search-project,
+#row-search-issueType,
+#row-search-category,
+#row-search-issueStatus,
+#row-search-priorityLevel {
     float: right;
 }
 
-.search-task .btn-search-task {
-    width: 150px;
-    border-radius: .25rem;
+.search-issue .btn-search-issue,
+.search-project .btn-search-project,
+.search-issueType .btn-search-issueType,
+.search-category .btn-search-category,
+.search-issueStatus .btn-search-issueStatus,
+.search-priorityLevel .btn-search-priorityLevel {
+    width: 250px;
+    border-radius: 0.25rem;
     border: 1px solid #ced4da;
+    padding: 0 0.5em;
+    outline: none;
 }
 
-.table-task-list {
+.table-issue-list,
+.table-project-list,
+.table-issueType-list,
+.table-category-list,
+.table-issueStatus-list,
+.table-priorityLevel-list {
     padding-top: 10px;
 }
-
 .row {
     display: inline-block;
 }
-
 
 /* user list */
 /* .users .list-user, .users, .users .item-menu  {
     background-color: #f0f0f0 !important; 
     color: #4c7ebf !important;
 } */
+.item-row td b {
+    font-weight: 400;
+}
 
-#display-users {
+#display-users,
+#display-categories,
+#display-issueTypes,
+#display-issueStatuses,
+#display-priorityLevels {
     background-color: #f0f0f0;
     margin-left: 200px;
     width: -webkit-fill-available;
 }
 
-.display-users .content-users-main {
+.display-users .content-users-main,
+.display-categories .content-categories-main,
+.display-issueTypes .content-issueTypes-main,
+.display-priorityLevels .content-priorityLevels-main,
+.display-issueStatuses .content-issueStatuses-main {
     width: -webkit-fill-available;
     margin: 30px;
     background-color: #fff;
     min-height: 550px;
     color: rgb(33, 37, 41);
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     border: 1px solid #c2c2c2;
     display: inline-block;
     border-top: 3px solid #28a745;
     box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
-
 }
 
-.display-users .content-users-main .user-list-wrapper {
+.display-users .content-users-main .user-list-wrapper,
+.display-categories .content-categories-main .category-list-wrapper,
+.display-issueTypes .content-issueTypes-main .issueType-list-wrapper,
+.display-issueStatuses .content-issueStatuses-main .issueStatus-list-wrapper,
+.display-priorityLevels .content-priorityLevels-main .priorityLevel-list-wrapper {
     padding: 0px 20px;
 }
 
-.content-users-main .user-list-wrapper .search-user {
-   /*  display: inline-block; */
+.content-users-main .user-list-wrapper .search-user,
+.content-categories-main .category-list-wrapper .search-category,
+.content-issueTypes-main .issueType-list-wrapper .search-issueType,
+.content-priorityLevels-main .priorityLevel-list-wrapper .search-priorityLevel,
+.content-issueStatuses-main .issueStatus-list-wrapper .search-issueStatus {
+    /*  display: inline-block; */
     float: right;
 }
 
-.btn-search-user {
+.btn-search-user,
+.btn-search-category,
+.btn-search-issueType,
+.btn-search-priorityLevel,
+.btn-search-issueStatus {
     width: 60px;
     height: 30px;
 }
 
-.table-user-list .user-list-body {
+.table-user-list .user-list-body,
+.table-category-list .category-list-body,
+.table-issueType-list .issueType-list-body,
+.table-priorityLevel-list .priorityLevel-list-body,
+.table-issueStatus-list .issueStatus-list-body {
     width: -webkit-fill-available;
     padding: 0px 20px;
 }
 
-.user-list-body, td, th {
+.user-list-body,
+td,
+th,
+.category-list-body,
+.issueType-list-body,
+.priorityLevel-list-body,
+.issueStatus-list-body {
     border: 2px solid #ddd;
     text-align: left;
 }
 
-.user-list-body th, td {
+.user-list-body th,
+td,
+.category-list-body th,
+.issueType-list-body th,
+.priorityLevel-list-body th,
+.issueStatus-list-body th {
     padding: 15px;
 }
-.user-list-body, td, th {  
+.user-list-body,
+td,
+th,
+.category-list-body,
+.issueType-list-body,
+.priorityLevel-list-body,
+.issueStatus-list-body {
     border: 2px solid #ddd;
     text-align: left;
 }
-  
-.user-list-body {
+
+.user-list-body,
+.category-list-body,
+.issueType-list-body,
+.priorityLevel-list-body,
+.issueStatus-list-body {
     border-collapse: collapse;
     width: 100%;
 }
-  
-.user-list-body th, td {
+
+.user-list-body th,
+td,
+.category-list-body th,
+.issueType-list-body th,
+.priorityLevel-list-body th,
+.issueStatus-list-body th {
     padding: 15px;
 }
 
-.content-users-main .user-list-header {
+.content-users-main .user-list-header,
+.content-categories-main .category-list-header,
+.content-issueTypes-main .issueType-list-header,
+.content-issueStatuses-main .issueStatus-list-header,
+.content-priorityLevels-main .priorityLevel-list-header {
     padding: 12px 20px;
 }
 
-.user-list-header .tool-addnew {
+.user-list-header .tool-addnew,
+.category-list-header .tool-addnew,
+.issueType-list-header .tool-addnew,
+.issueStatus-list-header .tool-addnew,
+.priorityLevel-list-header .tool-addnew {
     border-bottom: 2px solid #e5e5e5;
     height: 44px;
 }
 
-.tool-addnew .btn-add-new-user {
+.tool-addnew .btn-add-new-user,
+.tool-addnew .btn-add-new-category,
+.tool-addnew .btn-add-new-issueType,
+.tool-addnew .btn-add-new-priorityLevel,
+.tool-addnew .btn-add-new-issueStatus {
     padding-top: 5px;
     text-decoration: none;
     color: #333;
@@ -699,21 +980,37 @@ li .click-content a, li .click-content-user a{
     border: 1px solid #007bff;
 }
 
-.tool-addnew .btn-add-new-user i {
-    padding: 5px
+.tool-addnew .btn-add-new-user i,
+.tool-addnew .btn-add-new-category i,
+.tool-addnew .btn-add-new-issueType i,
+.tool-addnew .btn-add-new-priorityLevel i,
+.tool-addnew .btn-add-new-issueStatus i {
+    padding: 5px;
 }
 
-#row-search-user {
+#row-search-user,
+#row-search-category,
+#row-search-issueType,
+#row-search-priorityLevel,
+#row-search-issueStatus {
     float: right;
 }
 
-.search-user .btn-search-user {
+.search-user .btn-search-user,
+.search-category .btn-search-category,
+.search-issueType .btn-search-issueType,
+.search-priorityLevel .btn-search-priorityLevel,
+.search-issueStatus .btn-search-issueStatus {
     width: 150px;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     border: 1px solid #ced4da;
 }
 
-.table-user-list {
+.table-user-list,
+.table-category-list,
+.table-issueType-list,
+.table-priorityLevel-list,
+.table-issueStatus-list {
     padding-top: 10px;
 }
 
@@ -733,19 +1030,17 @@ li .click-content a, li .click-content-user a{
     width: -webkit-fill-available;
 }
 
-
 .display-Report .content-board-main {
     width: -webkit-fill-available;
     margin: 30px;
     background-color: #fff;
     min-height: 550px;
     color: rgb(33, 37, 41);
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     border: 1px solid #c2c2c2;
     display: inline-block;
     border-top: 3px solid #28a745;
     box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
-
 }
 
 .display-Report .content-board-main .card-header {
@@ -762,30 +1057,43 @@ li .click-content a, li .click-content-user a{
     height: 30px;
 }
 
-.table-responsive .task-progress {
+.table-responsive .issue-progress,
+.table-responsive .project-progress {
     width: -webkit-fill-available;
     padding: 15px 20px;
 }
 
-.task-progress-list, td, th {
+.issue-progress-list,
+.project-progress-listtd,
+th {
     border: 2px solid #ddd;
     text-align: left;
 }
 
-.task-progress-list th, td {
+.issue-progress-list th,
+td,
+.project-progress-list th {
     padding: 15px;
 }
-.task-progress, td, th {  
+.issue-progress,
+.project-progress,
+td,
+th {
     border: 2px solid #ddd;
     text-align: left;
 }
-  
-.task-progress, .task-progress-list {
+
+.issue-progress,
+.issue-progress-list,
+.project-progress,
+.project-progress-list {
     border-collapse: collapse;
     width: 100%;
 }
-  
-.task-progress th, td {
+
+.issue-progress th,
+.project-progress th,
+td {
     padding: 15px;
 }
 
@@ -794,7 +1102,6 @@ li .click-content a, li .click-content-user a{
     background-color: #4c7ebf;
     justify-content: center;
     display: flex;
-  
 }
 
 .login-box {
@@ -817,15 +1124,6 @@ li .click-content a, li .click-content-user a{
     font-size: 20px;
 }
 
-.form-control {
-    height: 38px;
-    width: 320px;
-    border-radius: .25rem;
-    border: 1px solid #ced4da;
-    padding: 6px 12px;
-    margin: 10px;
-}
-
 .icheck-primary {
     color: #666;
     font-weight: 600;
@@ -837,7 +1135,7 @@ li .click-content a, li .click-content-user a{
     margin-right: 10px;
     width: 22px;
     height: 22px;
-    border: 1px solid #D3CFC8;
+    border: 1px solid #d3cfc8;
     border-radius: 0;
     cursor: pointer;
 }
@@ -854,28 +1152,29 @@ li .click-content a, li .click-content-user a{
     float: right;
     background-color: rgb(0, 123, 255);
     border: 1px solid transparent;
-    padding: .375rem .75rem;
+    padding: 0.375rem 0.75rem;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: .25rem;
-    transition: color .15s;
+    border-radius: 0.25rem;
+    transition: color 0.15s;
     color: #fff;
     width: 96px;
     cursor: pointer;
 }
 
-.input-group-append, .icheck-primary {
+.input-group-append,
+.icheck-primary {
     display: inline-block;
 }
 
 /*manage account*/
-#form-manage-account{
+#form-manage-account {
     width: 100%;
     margin-top: -800px;
     height: 800px;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     position: relative;
-   /*  z-index: 3; */
+    /*  z-index: 3; */
 }
 .main-edit-account {
     min-height: 100vh;
@@ -893,56 +1192,47 @@ li .click-content a, li .click-content-user a{
     margin: 24px;
     align-self: center;
     box-shadow: 0 2px 5px 0 rgba(51, 62, 73, 0.1);
-  }
+}
 .form .heading {
     font-size: 1.25rem;
 }
-  
+
 .form-group {
     display: flex;
     margin-bottom: 16px;
     flex-direction: column;
-  }
-  
+}
+
 .form-label,
 .form-message {
     text-align: left;
-  }
-  
+}
+
 .form-label {
     font-weight: 700;
     padding-bottom: 6px;
     line-height: 1.8rem;
     font-size: 1rem;
-  }
-  
-.form-control {
-    height: 40px;
-    padding: 8px 12px;
-    border: 1px solid #b3b3b3;
-    border-radius: 3px;
-    outline: none;
-    font-size: 1rem;
-  }
-  
+}
+
 .form-control:hover {
     border-color: #1dbfaf;
-  }
-  
+}
+
 .form-group.invalid .form-control {
     border-color: #f33a58;
-  }
-  
+}
+
 .form-group.invalid .form-message {
     color: #f33a58;
-  }
-  
+}
+
 .form-message {
     font-size: 1rem;
     line-height: 1.6rem;
     padding: 4px 0 0;
-  }
-  
+}
+
 .form-submit {
     outline: none;
     background-color: #1dbfaf;
@@ -955,15 +1245,15 @@ li .click-content a, li .click-content-user a{
     font-size: 14px;
     border-radius: 8px;
     cursor: pointer;
-  }
-  
+}
+
 .form-submit:hover {
     background-color: #1ac7b6;
-  }
-  
+}
+
 .spacer {
-  margin-top: 36px;
-  }
+    margin-top: 36px;
+}
 
 .editAccount {
     width: -webkit-fill-available;
@@ -971,7 +1261,6 @@ li .click-content a, li .click-content-user a{
 
 .input-add-user {
     margin-left: 20px;
-
 }
 
 .input-add-user .form-label {
@@ -980,7 +1269,8 @@ li .click-content a, li .click-content-user a{
 }
 
 /*GANTT*/
-.display-gantt, .display-board {
+.display-gantt,
+.display-board {
     background-color: #f0f0f0;
     margin-left: 200px;
     width: -webkit-fill-available;
@@ -996,12 +1286,47 @@ li .click-content a, li .click-content-user a{
     height: 25px;
 }
 
+.form-group .la-select2 {
+    padding: 0;
+}
 
+.form-group .la-select2 .select2-selection {
+    height: 32px;
+}
 
+.form-group .la-select2 .select2-container {
+    width: 100%;
+}
 
+.form-group .la-select2 select {
+    width: 100%;
+}
 
+.primary-button,
+.la-btn-link {
+    padding: 0.25em 0.5em;
+    border-radius: 3px;
+    border: 1px solid #007bff;
+    background: #007bff;
+    color: white;
+    text-decoration: none;
+}
 
+.primary-button:hover,
+.la-btn-link:hover {
+    background: #2284ed;
+    color: white;
+}
 
+.float-right {
+    float: right;
+}
 
-
-
+.input-search {
+    width: 250px;
+    height: 30px;
+    border-radius: 0.25rem;
+    border: 1px solid #ced4da;
+    padding: 0 0.5em;
+    outline: none;
+}

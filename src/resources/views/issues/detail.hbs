@@ -1,0 +1,265 @@
+{{>header}}
+{{>slidebar}}
+
+<div id='edit-issue' class="edit-issue">
+    <div class="content-wrapper-header">
+        <p> Edit Issue </p>
+    </div>
+    <div class="content-board-main" style="margin: 30px;">
+        <form method="POST" {{#if isFormAdd}} action="/issues/store" {{/if}} 
+           {{#unless isFormAdd}} action="/issues/{{issue._id}}?_method=PUT" {{/unless}}
+            style="background-color: #fff; padding: 20px">
+            <div class="col-lg-12 board-main-content">
+                <div class="row board-main-row">
+                    <div class="col-md-12">
+                        <div class="callout callout-info">
+                            <div class="col-md-12">
+                                <div class="row board-main">
+                                    <div class="col-sm-6" style="padding-right: 1em">
+                                        <div class="form-group">
+                                            <label for="project" class="form-label">Project Name</label>
+                                            <div class="la-select2">
+                                                <select name="project" id="project" value='{{issue.project}}'
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    placeholder="Select Project">
+                                                    {{#each project}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.projectName}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="subject" class="form-label">Subject</label>
+                                            <input type="text" class="form-control inputIssue" value='{{issue.subject}}'
+                                                id="subject" name="subject">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="startDate" class="form-label">Start Date</label>
+                                            <input type="date" class="form-control inputIssue"
+                                                value='{{issue.startDate}}' id="startDate" name="startDate">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="assignee" class="form-label">Assignee</label>
+                                            <div class="la-select2">
+                                                <select name="assignee" id="assignee" value='{{issue.assignee}}'
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    placeholder="Select Assignee">
+                                                    {{#each assignee}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.fullName}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="category" class="form-label">Category</label>
+                                            <div class="la-select2">
+                                                <select name="category" id="issuecategoryType"
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    placeholder="Select Category" value='{{issue.category}}'>
+                                                    {{#each category}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.categoryName}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="attachment" class="form-label">Attachment</label>
+                                            <input type="hidden" name="attachment" value="" />
+                                            <input type="file" id="attachment" class="form-control inputIssue"
+                                                value="{{issue.attachment}}" {{#if issue.attachmentName}}
+                                                style="display: none" {{/if}}>
+                                            <div class="attachment-info" {{#unless issue.attachmentName}}
+                                                style="display: none" {{/unless}}>
+                                                <span style="color: blue;">{{issue.attachmentName}}</span>
+                                                <span class="btn-delete-attachment">Xóa</span>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6" style="padding-left: 1em">
+                                        <div class="form-group">
+                                            <label for="issueType" class="form-label">Issue Type</label>
+                                            <div class="la-select2">
+                                                <select name="issueType" id="issueType"
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    placeholder="Select Issue Type" value='{{issue.issueType}}'>
+                                                    {{#each type}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.issueTypeName}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="status" class="form-label">Status</label>
+                                            <div class="la-select2">
+                                                <select name="status" id="status"
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    placeholder="Select Status" value='{{issue.status}}'>
+                                                    {{#each status}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.issueStatusName}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="dueDate" class="form-label">Due Date</label>
+                                            <input type="date" class="form-control inputIssue" value='{{issue.dueDate}}'
+                                                id="dueDate" name="dueDate">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="priority" class="form-label">Priority</label>
+                                            <div class="la-select2">
+                                                <select name="priority" id="priority"
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    placeholder="Select Priority" value='{{issue.priority}}'>
+                                                    {{#each priority}}
+                                                    <option value="{{this._id}}" {{#if this.selected}} selected {{/if}}>
+                                                        {{this.priorityLevelName}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea type="text" class="form-control inputIssue" id="description"
+                                                name="description"
+                                                style="height: 100px;">{{issue.description}}</textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary"
+                                            style="float: right;  margin-top: 30px">Save</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        generateSelect2('#edit-issue .dropdown');
+
+        $('#edit-issue #attachment').change(function () {
+            const $this = $(this);
+            var filename = $this.val();
+            var fd = new FormData();
+            var files = $this[0].files[0];
+            fd.append('file', files);
+            $.ajax({
+                type: 'POST',
+                url: '/file/upload',
+                data: fd,
+                contentType: false,
+                processData: false,
+                success: (returnVal) => {
+                    $this.prev().val(returnVal);
+                    $this[0].style.display = 'none';
+                    $this.next()[0].style.display = 'block';
+                    $this.next()[0].firstElementChild.innerText = files.name;
+                }
+            });
+        });
+
+        $('#edit-issue .btn-delete-attachment').click(function () {
+            const parent = $(this)[0].parentElement;
+            parent.style.display = 'none';
+            parent.previousElementSibling.style.display = null;
+            $(parent.previousElementSibling).val(null).prev().val('');
+        });
+    });
+</script>
+
+<style>
+    .issue,
+    #item-menu-issue {
+        background-color: #f0f0f0 !important;
+        color: #4c7ebf !important;
+    }
+</style>
+
+<style>
+    .content-board-main {
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+
+    .board-main-row {
+        background: #fff;
+        padding: 20px 30px;
+        color: rgb(33, 37, 41);
+        display: inline-block;
+
+
+    }
+
+    .board-main {
+        display: flex;
+    }
+
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-issue {
+        display: flex;
+
+    }
+
+    .detail-issue-col1,
+    .detail-issue-col2 {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+
+    }
+
+    .detail-issue-col1 {
+        margin: 25px 0px 20px 30px;
+    }
+
+    .detail-issue-col2 {
+        margin: 25px 20px 20px 0px;
+    }
+
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary {
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    .issues-list li {
+        list-style-type: none;
+    }
+
+    .issues-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+</style>

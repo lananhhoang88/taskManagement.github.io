@@ -1,0 +1,188 @@
+{{>header}}
+{{>slidebar}}
+
+<div id='edit-project' class="edit-project">
+    <div class="content-wrapper-header">
+        <p> Edit Project </p>
+    </div>
+    <div class="content-board-main" style="margin: 30px;">
+        <form method="POST" {{#if isFormAdd}}action="/projects/store" {{/if}} {{#unless
+            isFormAdd}}action="/projects/{{project._id}}?_method=PUT" {{/unless}}
+            style="background-color: #fff; padding: 20px">
+            <div class="col-lg-12 board-main-content">
+                <div class="row board-main-row">
+                    <div class="col-md-12">
+                        <div class="callout callout-info">
+                            <div class="col-md-12">
+                                <div class="row board-main">
+                                    <div class="col-sm-6" style="padding-right: 1em">
+
+                                        <div class="">
+                                            <label for="projectName" class="form-label">Name</label>
+                                            <input type="text" class="form-control inputProject"
+                                                value='{{project.projectName}}' id="projectName" name="projectName">
+                                        </div>
+                                        <div class="">
+                                            <label for="startDate" class="form-label">Start Date</label>
+                                            <input type="date" class="form-control inputProject"
+                                                value='{{project.startDate}}' id="startDate" name="startDate">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="projectManager" class="form-label">Project Manager</label>
+                                            <div class="la-select2">
+                                                <select name="projectManager" id="projectManager"
+                                                    placeholder="Select Project Manager"
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    value="{{project.projectManager}}">
+                                                    {{#each user}}
+                                                    <option value="{{this._id}}" {{#if selected}} selected {{/if}}>
+                                                        {{this.fullName}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-6" style="padding-left: 1em">
+                                        <div class="form-group">
+                                            <label for="status" class="form-label">Status</label>
+                                            <div class="la-select2">
+                                                <select name="status" id="status" placeholder="Select Status"
+                                                    class="dropdown custom-select custom-select-sm"
+                                                    value="{{project.status}}">
+                                                    {{#each status}}
+                                                    <option value="{{this._id}}" {{#if selected}} selected {{/if}}>
+                                                        {{this.issueStatusName}}
+                                                    </option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="">
+                                            <label for="dueDate" class="form-label">Due Date</label>
+                                            <input type="date" class="form-control inputProject"
+                                                value='{{project.dueDate}}' id="dueDate" name="dueDate">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="projectTeamMembers" class="form-label">Project Team
+                                                Members</label>
+                                            <div class="la-select2">
+                                                <select class="dropdown" name="projectTeamMembers" multiple="multiple"
+                                                    placeholder="Select Team Members"
+                                                    value="{{project.strProjectTeamMembers}}">
+                                                    {{#each user}}
+                                                    <option value="{{this._id}}" {{#if selected}} selected {{/if}}>
+                                                        {{this.fullName}}</option>
+                                                    {{/each}}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea type="text" class="form-control inputProject" id="description"
+                                                name="description"
+                                                style="height: 100px;"> {{project.description}}</textarea>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary"
+                                            style="float: right; margin-top: 30px">Save</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+
+</div>
+
+
+<style>
+    .project,
+    #item-menu-project {
+        background-color: #f0f0f0 !important;
+        color: #4c7ebf !important;
+    }
+</style>
+
+<style>
+    .content-board-main {
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    }
+
+    .board-main-row {
+        background: #fff;
+        padding: 20px 30px;
+        color: rgb(33, 37, 41);
+        display: inline-block;
+
+
+    }
+
+    .board-main {
+        display: flex;
+    }
+
+    .board-main-content {
+        display: grid;
+    }
+
+    .detail-project {
+        display: flex;
+
+    }
+
+    .detail-project-col1,
+    .detail-project-col2 {
+        color: rgb(33, 37, 41);
+        border-radius: .25rem;
+        border-top: 3px solid #28a745;
+        box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+
+    }
+
+    .detail-project-col1 {
+        margin: 25px 0px 20px 30px;
+    }
+
+    .detail-project-col2 {
+        margin: 25px 20px 20px 0px;
+    }
+
+
+    .card-header {
+        background-color: #fff;
+    }
+
+    .badge-primary {
+        color: #fff;
+        background-color: #007bff;
+    }
+
+    .projects-list li {
+        list-style-type: none;
+    }
+
+    .projects-list-name {
+        color: #000;
+        text-decoration: none;
+    }
+
+    .dropdown-menu {
+        margin: 40px 70px 0 0;
+    }
+</style>
+
+<script>
+    $(document).ready(function () {
+        generateSelect2('#edit-project .dropdown');
+    });
+</script>

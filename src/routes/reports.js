@@ -6,5 +6,6 @@ const reportController = require('../app/controllers/ReportsController');
 router.get('/report', reportController.index);
 router.get('/gantt', reportController.gantt);
 router.get('/board', reportController.board);
+router.post('/board', reportController.board);
 
 module.exports = router;
